@@ -14,6 +14,8 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 export default function StrategyRollingWinRate({ data, windowSize = 10 }) {
+  const isNarrow = typeof window !== 'undefined' && window.matchMedia('(max-width: 700px)').matches
+
   const chartData = useMemo(() => {
     if (!data || data.length === 0) return null
 
@@ -62,14 +64,14 @@ export default function StrategyRollingWinRate({ data, windowSize = 10 }) {
         backgroundColor: color.replace('1)', '0.2)'),
         fill: false,
         tension: 0.25,
-        pointRadius: 3,
-        pointHoverRadius: 5,
+        pointRadius: isNarrow ? 2 : 3,
+        pointHoverRadius: isNarrow ? 4 : 5,
         spanGaps: true,
       }
     })
 
     return { labels, datasets }
-  }, [data, windowSize])
+  }, [data, windowSize, isNarrow])
 
   if (!chartData) {
     return <div className="no-data">No data available for rolling win rate</div>
@@ -77,15 +79,16 @@ export default function StrategyRollingWinRate({ data, windowSize = 10 }) {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: !isNarrow,
     plugins: {
       legend: {
         display: true,
         position: 'bottom',
         labels: {
           color: '#e6eef8',
-          padding: 15,
-          font: { size: 12 },
+          padding: isNarrow ? 10 : 15,
+          font: { size: isNarrow ? 10 : 12 },
+          boxWidth: isNarrow ? 16 : 24,
         },
       },
       tooltip: {
@@ -109,7 +112,9 @@ export default function StrategyRollingWinRate({ data, windowSize = 10 }) {
       x: {
         ticks: {
           color: '#9ca3af',
-          maxTicksLimit: 12,
+          maxTicksLimit: isNarrow ? 6 : 12,
+          maxRotation: 0,
+          minRotation: 0,
         },
         grid: {
           display: false,

@@ -21,6 +21,8 @@ const STRATEGY_COLORS = {
 }
 
 export default function StrategyROIChart({ data }) {
+  const isNarrow = typeof window !== 'undefined' && window.matchMedia('(max-width: 700px)').matches
+
   const chartData = useMemo(() => {
     if (!data || data.length === 0) return null
 
@@ -72,11 +74,11 @@ export default function StrategyROIChart({ data }) {
         borderWidth: 2,
         fill: false,
         tension: 0.3,
-        pointRadius: 4,
+        pointRadius: isNarrow ? 2 : 4,
         pointBackgroundColor: color,
         pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointHoverRadius: 6,
+        pointBorderWidth: isNarrow ? 1 : 2,
+        pointHoverRadius: isNarrow ? 4 : 6,
       }
     })
 
@@ -84,7 +86,7 @@ export default function StrategyROIChart({ data }) {
       labels: months.map(m => new Date(m + '-01').toLocaleDateString('en-US', { month: 'short', year: '2-digit' })),
       datasets,
     }
-  }, [data])
+  }, [data, isNarrow])
 
   if (!chartData || chartData.datasets.length === 0) {
     return <div className="no-data">No data available for ROI chart</div>
@@ -92,15 +94,16 @@ export default function StrategyROIChart({ data }) {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: !isNarrow,
     plugins: {
       legend: {
         display: true,
         position: 'bottom',
         labels: {
           color: '#e6eef8',
-          padding: 15,
-          font: { size: 12 },
+          padding: isNarrow ? 10 : 15,
+          font: { size: isNarrow ? 10 : 12 },
+          boxWidth: isNarrow ? 16 : 24,
         },
       },
       tooltip: {
@@ -134,6 +137,9 @@ export default function StrategyROIChart({ data }) {
         },
         ticks: {
           color: '#9ca3af',
+          maxTicksLimit: isNarrow ? 6 : 12,
+          maxRotation: 0,
+          minRotation: 0,
         },
       },
     },
