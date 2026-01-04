@@ -1,0 +1,108 @@
+:root{
+  --bg:#0f1724;
+  --card:#111827;
+  --accent:#22c55e;
+  --muted:#9ca3af;
+}
+
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#071025, #071025); color:#e6eef8}
+.app{max-width:1100px;margin:24px auto;padding:16px}
+.header h1{margin:0 0 12px}
+.header{display:flex;justify-content:space-between;align-items:center}
+.tabs{display:flex;gap:8px}
+.tab{background:#0b1220;border:1px solid #1e293b;color:#e6eef8;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px}
+.tab.active{background:var(--accent);color:#000;font-weight:600}
+.tab:hover{background:#1e293b}
+.premium-banner{background:linear-gradient(135deg,#0b1220 0%,#0f1b2d 45%,#13243c 100%);border:1px solid #1e293b;border-radius:12px;padding:18px 20px;margin:12px 0 18px;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+.premium-banner__title{font-size:20px;font-weight:700;color:#e6eef8;margin-bottom:6px}
+.premium-banner__subtitle{color:#9ca3af;font-size:14px;line-height:1.5}
+.filter-bar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:#0b1220;border:1px solid #1e293b;border-radius:8px;padding:12px;margin-bottom:16px}
+.filter-group{display:flex;align-items:center;gap:10px}
+.filter-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.filter-buttons{display:flex;gap:8px}
+.filter-buttons.year-buttons{flex-wrap:wrap}
+.filter-btn{background:#071026;border:1px solid #1e293b;color:#e6eef8;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px}
+.filter-btn.active{background:var(--accent);color:#000;font-weight:600}
+.filter-btn:hover{border-color:var(--accent)}
+.filter-select{background:#071026;border:1px solid #1e293b;color:#e6eef8;padding:6px 10px;border-radius:6px;font-size:13px}
+.month-filter{flex-direction:column;align-items:flex-start}
+.pnl-badge{font-size:11px;padding:2px 6px;border-radius:999px;background:#0b1220;border:1px solid #1e293b;min-width:52px;text-align:center}
+.filter-btn.active .pnl-badge{background:rgba(0,0,0,0.3);border-color:rgba(0,0,0,0.35);color:#000}
+.month-btn{display:flex;align-items:center;gap:8px}
+.kpis{display:flex;gap:12px;margin-bottom:20px}
+.kpi{background:#0b1220;padding:12px;border-radius:8px;flex:1}
+.kpi-label{font-size:12px;color:var(--muted)}
+.kpi-value{font-size:20px;font-weight:700}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.chart-card{background:#071026;padding:12px;border-radius:8px}
+.trades{background:#071026;padding:12px;border-radius:8px}
+table{width:100%;border-collapse:collapse}
+th{color:var(--muted);text-align:left;padding:8px}
+td{padding:8px}
+.positive{color:var(--accent)}
+.negative{color:#ff6b6b}
+.monthly-charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.monthly-stats-container{width:100%}
+.monthly-stats-table{background:#071026;padding:12px;border-radius:8px;margin-top:20px}
+.monthly-stats-table h3{margin-top:0}
+.strategy-charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.strategy-stats-container{width:100%}
+.strategy-metrics{background:#071026;padding:16px;border-radius:8px;margin-bottom:20px}
+.strategy-metrics h3{margin:0 0 12px;color:#e6eef8}
+.strategy-stats-table{background:#071026;padding:12px;border-radius:8px;margin-top:20px}
+.strategy-stats-table h3{margin-top:0}
+.strategy-roi-chart{background:#071026;padding:20px;border-radius:8px;margin-bottom:20px;border:1px solid #1e293b}
+.strategy-roi-chart h3{margin-top:0;color:#e6eef8}
+.chart-container{position:relative;height:350px;margin-top:12px}
+.no-data{color:var(--muted);padding:20px;text-align:center}
+.strategy-by-month-calendar{width:100%}
+.month-selector{background:linear-gradient(135deg, #0b1220 0%, #111827 100%);padding:20px;border-radius:12px;margin-bottom:24px;border:1px solid #1e293b}
+.month-selector h2{margin:0 0 16px;font-size:20px;color:#e6eef8}
+.month-buttons{display:flex;flex-wrap:wrap;gap:8px}
+.month-btn{background:#0b1220;border:1px solid #1e293b;color:#9ca3af;padding:10px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.2s ease;white-space:nowrap}
+.month-btn:hover{border-color:var(--accent);color:var(--accent);background:#111827}
+.month-btn.active{background:var(--accent);color:#000;font-weight:600;border-color:var(--accent);box-shadow:0 4px 12px rgba(34,197,94,0.2)}
+.month-header{margin-bottom:20px}
+.month-header h2{margin:0;font-size:24px;color:#e6eef8}
+.month-stats-summary{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-bottom:24px}
+.summary-card{background:linear-gradient(135deg, #0b1220 0%, #111827 100%);padding:16px;border-radius:10px;border:1px solid #1e293b;display:flex;align-items:center;gap:12px;transition:all 0.2s}
+.summary-card:hover{border-color:#1e293b;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.summary-card.total-trades .summary-icon{font-size:32px}
+.summary-card.total-pnl .summary-icon{font-size:32px}
+.summary-card.win-rate .summary-icon{font-size:32px}
+.summary-icon{font-size:32px}
+.summary-content{flex:1}
+.summary-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.summary-value{font-size:22px;font-weight:700;color:#e6eef8;margin-top:4px}
+.summary-card.total-pnl.positive{border-color:rgba(34,197,94,0.3)}
+.summary-card.total-pnl.negative{border-color:rgba(255,107,107,0.3)}
+.summary-card.total-pnl.positive .summary-value{color:var(--accent)}
+.summary-card.total-pnl.negative .summary-value{color:#ff6b6b}
+.strategy-breakdown{background:transparent}
+.no-data{color:var(--muted);padding:40px 20px;text-align:center;font-size:16px;background:linear-gradient(135deg, #0b1220 0%, #111827 100%);border:1px dashed #1e293b;border-radius:10px}
+.strategy-cards{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:16px}
+.strategy-card{background:linear-gradient(135deg, #0b1220 0%, #111827 100%);padding:16px;border-radius:10px;border:1px solid #1e293b;transition:all 0.3s ease;border-left:4px solid #1e293b}
+.strategy-card.profitable{border-left-color:var(--accent)}
+.strategy-card.losing{border-left-color:#ff6b6b}
+.strategy-card:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,0.4);border-color:#22c55e}
+.strategy-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #1e293b}
+.strategy-title h4{margin:0;font-size:16px;font-weight:600;color:#e6eef8}
+.strategy-badge{font-size:18px;font-weight:700;padding:4px 8px;border-radius:6px}
+.strategy-badge.positive{background:rgba(34,197,94,0.2);color:var(--accent)}
+.strategy-badge.negative{background:rgba(255,107,107,0.2);color:#ff6b6b}
+.strategy-progress-bar{height:6px;background:#0b1220;border-radius:3px;overflow:hidden;margin-bottom:12px;border:1px solid #1e293b}
+.progress-fill{height:100%;background:linear-gradient(90deg, var(--accent), #10b981);border-radius:3px}
+.strategy-card-stats{display:flex;flex-direction:column;gap:12px}
+.stat-group{display:flex;gap:12px;justify-content:space-between}
+.stat-item{flex:1;background:#0b1220;padding:10px;border-radius:6px;border:1px solid #1e293b;text-align:center}
+.stat-item.winners{border-color:rgba(34,197,94,0.2)}
+.stat-item.losers{border-color:rgba(255,107,107,0.2)}
+.stat-item.avg{border-color:#1e293b;grid-column:span 2}
+.stat-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px}
+.stat-value{display:block;font-size:16px;font-weight:700;color:#e6eef8}
+.stat-item.winners .stat-value{color:var(--accent)}
+.stat-item.losers .stat-value{color:#ff6b6b}
+
+.notice.warning{background:#3b2b00;color:#fde68a;border-left:4px solid #f59e0b;padding:10px;border-radius:6px;margin-bottom:12px}
+.issue-note{color:#f59e0b;font-weight:600}
+td.notes{font-size:12px;color:var(--muted)}
