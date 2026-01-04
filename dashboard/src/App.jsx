@@ -189,6 +189,27 @@ export default function App() {
   const issueRows = useMemo(() => rows.filter(r => r.issues && r.issues.length), [rows])
   const issueCount = issueRows.length
 
+  const tickerLeaders = useMemo(() => {
+    const map = {}
+    filteredRows.forEach(t => {
+      const symbol = (t.symbol || '').trim()
+      if (!symbol) return
+      if (!map[symbol]) {
+        map[symbol] = { symbol, trades: 0, totalPnl: 0 }
+      }
+      map[symbol].trades += 1
+      map[symbol].totalPnl += t.pnl || 0
+    })
+
+    const list = Object.values(map).sort((a, b) => b.totalPnl - a.totalPnl)
+    const positives = list.filter(t => t.totalPnl > 0)
+    const negatives = list.filter(t => t.totalPnl < 0)
+    return {
+      top: positives.slice(0, 5),
+      bottom: negatives.slice().sort((a, b) => a.totalPnl - b.totalPnl).slice(0, 5),
+    }
+  }, [filteredRows])
+
   return (
     <div className="app">
       <header className="header">
@@ -414,6 +435,44 @@ export default function App() {
 
           <section className="trades">
             <h3>Trades</h3>
+            <div className="trade-leaders">
+              <div className="leader-card">
+                <div className="leader-title">Top Tickers by P&amp;L</div>
+                {tickerLeaders.top.length === 0 ? (
+                  <div className="no-data">No ticker data.</div>
+                ) : (
+                  <ul className="leader-list">
+                    {tickerLeaders.top.map(t => (
+                      <li key={t.symbol}>
+                        <span className="leader-symbol">{t.symbol}</span>
+                        <span className={`leader-pnl ${t.totalPnl >= 0 ? 'positive' : 'negative'}`}>
+                          {formatPnl(t.totalPnl)}
+                        </span>
+                        <span className="leader-meta">{t.trades} trades</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="leader-card">
+                <div className="leader-title">Worst Tickers by P&amp;L</div>
+                {tickerLeaders.bottom.length === 0 ? (
+                  <div className="no-data">No ticker data.</div>
+                ) : (
+                  <ul className="leader-list">
+                    {tickerLeaders.bottom.map(t => (
+                      <li key={t.symbol}>
+                        <span className="leader-symbol">{t.symbol}</span>
+                        <span className={`leader-pnl ${t.totalPnl >= 0 ? 'positive' : 'negative'}`}>
+                          {formatPnl(t.totalPnl)}
+                        </span>
+                        <span className="leader-meta">{t.trades} trades</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
             <table>
               <thead>
                 <tr>
