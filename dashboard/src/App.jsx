@@ -203,12 +203,6 @@ export default function App() {
         </div>
       </section>
 
-      {SHEET_ID && (
-        <div className="notice">
-          Loading data from Google Sheet: <code>{SHEET_ID}</code>
-        </div>
-      )}
-
       {loading && (
         <div className="notice">Loading data…</div>
       )}
