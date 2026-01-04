@@ -21,7 +21,7 @@ export default function MonthlyBarChart({ data }) {
       {
         label: 'P&L',
         data: values,
-        backgroundColor: values.map(v => (v >= 0 ? 'rgba(75,192,192,0.6)' : 'rgba(255,99,132,0.6)')),
+        backgroundColor: values.map(v => (v >= 0 ? 'rgba(34,197,94,0.6)' : 'rgba(248,113,113,0.6)')),
       },
     ],
   }

@@ -31,8 +31,8 @@ export default function YearlyLineChart({ data }) {
       {
         label: 'Cumulative P&L',
         data: values,
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.2)',
+        borderColor: 'rgba(56,189,248,1)',
+        backgroundColor: 'rgba(56,189,248,0.2)',
         fill: true,
       },
     ],
