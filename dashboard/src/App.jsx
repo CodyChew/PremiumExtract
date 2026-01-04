@@ -171,6 +171,21 @@ export default function App() {
     return `${sign}$${v.toFixed(0)}`
   }
 
+  const monthChoices = [
+    { key: '01', label: 'Jan' },
+    { key: '02', label: 'Feb' },
+    { key: '03', label: 'Mar' },
+    { key: '04', label: 'Apr' },
+    { key: '05', label: 'May' },
+    { key: '06', label: 'Jun' },
+    { key: '07', label: 'Jul' },
+    { key: '08', label: 'Aug' },
+    { key: '09', label: 'Sep' },
+    { key: '10', label: 'Oct' },
+    { key: '11', label: 'Nov' },
+    { key: '12', label: 'Dec' },
+  ]
+
   const issueRows = useMemo(() => rows.filter(r => r.issues && r.issues.length), [rows])
   const issueCount = issueRows.length
 
@@ -248,13 +263,11 @@ export default function App() {
                   {years.map(y => (
                     <button
                       key={y}
-                      className={`filter-btn ${selectedYear === y ? 'active' : ''}`}
+                      className={`filter-btn year-tile ${selectedYear === y ? 'active' : ''} ${yearPnlMap[y] >= 0 ? 'positive' : 'negative'}`}
                       onClick={() => setSelectedYear(y)}
                     >
-                      <span>{y}</span>
-                      <span className={`pnl-badge ${yearPnlMap[y] >= 0 ? 'positive' : 'negative'}`}>
-                        {formatPnl(yearPnlMap[y])}
-                      </span>
+                      <span className="year-tile-label">{y}</span>
+                      <span className="year-tile-value">{formatPnl(yearPnlMap[y])}</span>
                     </button>
                   ))}
                 </div>
@@ -268,36 +281,42 @@ export default function App() {
                     {years.map(y => (
                       <button
                         key={y}
-                        className={`filter-btn ${selectedYear === y ? 'active' : ''}`}
+                        className={`filter-btn year-tile ${selectedYear === y ? 'active' : ''} ${yearPnlMap[y] >= 0 ? 'positive' : 'negative'}`}
                         onClick={() => setSelectedYear(y)}
                       >
-                        <span>{y}</span>
-                        <span className={`pnl-badge ${yearPnlMap[y] >= 0 ? 'positive' : 'negative'}`}>
-                          {formatPnl(yearPnlMap[y])}
-                        </span>
+                        <span className="year-tile-label">{y}</span>
+                        <span className="year-tile-value">{formatPnl(yearPnlMap[y])}</span>
                       </button>
                     ))}
                   </div>
                 </div>
                 <div className="filter-group month-buttons">
-                  {monthsForYear.map(month => {
-                    const monthDate = new Date(month + '-01')
-                    const monthLabel = monthDate.toLocaleDateString('en-US', { month: 'short' })
-                    const monthPnl = monthPnlMap[month] || 0
-                    return (
-                      <button
-                        key={month}
-                        className={`month-btn ${selectedMonth === month ? 'active' : ''}`}
-                        onClick={() => setSelectedMonth(month)}
-                        title={monthLabel}
-                      >
-                        <span>{monthLabel}</span>
-                        <span className={`pnl-badge ${monthPnl >= 0 ? 'positive' : 'negative'}`}>
-                          {formatPnl(monthPnl)}
-                        </span>
-                      </button>
-                    )
-                  })}
+                  <div className="month-grid">
+                    {monthChoices.map(month => {
+                      const monthKey = selectedYear ? `${selectedYear}-${month.key}` : ''
+                      const available = monthKey && monthsForYear.includes(monthKey)
+                      const monthPnl = available ? monthPnlMap[monthKey] || 0 : 0
+                      const monthDate = monthKey ? new Date(monthKey + '-01') : null
+                      const monthTitle = monthDate
+                        ? monthDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })
+                        : month.label
+
+                      return (
+                        <button
+                          key={month.key}
+                          className={`month-cell ${selectedMonth === monthKey ? 'active' : ''} ${available ? '' : 'disabled'} ${monthPnl >= 0 ? 'positive' : 'negative'}`}
+                          onClick={() => available && setSelectedMonth(monthKey)}
+                          disabled={!available}
+                          title={monthTitle}
+                        >
+                          <span className="month-cell-label">{month.label}</span>
+                          {available && (
+                            <span className="month-cell-value">{formatPnl(monthPnl)}</span>
+                          )}
+                        </button>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             )}

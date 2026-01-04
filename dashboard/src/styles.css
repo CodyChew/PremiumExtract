@@ -11,9 +11,9 @@ body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica
 .header h1{margin:0 0 12px}
 .header{display:flex;justify-content:space-between;align-items:center}
 .tabs{display:flex;gap:8px}
-.tab{background:#0b1220;border:1px solid #1e293b;color:#e6eef8;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px}
-.tab.active{background:var(--accent);color:#000;font-weight:600}
-.tab:hover{background:#1e293b}
+.tab{background:#0b1220;border:1px solid #1e293b;color:#cbd5f5;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;transition:all 0.2s ease}
+.tab.active{background:var(--accent);color:#071025;border-color:rgba(34,197,94,0.8);box-shadow:0 6px 14px rgba(34,197,94,0.2)}
+.tab:hover{border-color:#334155;color:#e6eef8}
 .premium-banner{background:linear-gradient(135deg,#0b1220 0%,#0f1b2d 45%,#13243c 100%);border:1px solid #1e293b;border-radius:12px;padding:18px 20px;margin:12px 0 18px;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
 .premium-banner__title{font-size:20px;font-weight:700;color:#e6eef8;margin-bottom:6px}
 .premium-banner__subtitle{color:#9ca3af;font-size:14px;line-height:1.5}
@@ -22,9 +22,17 @@ body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica
 .filter-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
 .filter-buttons{display:flex;gap:8px}
 .filter-buttons.year-buttons{flex-wrap:wrap}
-.filter-btn{background:#071026;border:1px solid #1e293b;color:#e6eef8;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px}
-.filter-btn.active{background:var(--accent);color:#000;font-weight:600}
-.filter-btn:hover{border-color:var(--accent)}
+.filter-buttons.year-buttons .filter-btn{padding:0;border-radius:10px}
+.year-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:54px;min-width:96px;background:#0b1220;border:1px solid #1e293b;color:#cbd5f5;padding:8px;border-radius:8px;transition:all 0.2s ease}
+.year-tile-label{font-size:13px;letter-spacing:0.2px;font-weight:800;color:#dbe2f5;opacity:0.95;text-align:center}
+.year-tile-value{font-size:13px;font-weight:800;letter-spacing:0.2px;line-height:1.1;text-align:center}
+.year-tile.positive{background:rgba(16,185,129,0.18);border-color:rgba(16,185,129,0.45);color:#eafff7}
+.year-tile.negative{background:rgba(244,63,94,0.2);border-color:rgba(244,63,94,0.45);color:#fff0f3}
+.year-tile.active{box-shadow:0 8px 18px rgba(34,197,94,0.18);border-color:#22c55e}
+.year-tile.active.negative{box-shadow:0 8px 18px rgba(248,113,113,0.18);border-color:#f87171}
+.filter-btn{background:#0b1220;border:1px solid #1e293b;color:#cbd5f5;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px;font-weight:600;transition:all 0.2s ease}
+.filter-btn.active{background:var(--accent);color:#071025;border-color:rgba(34,197,94,0.8);box-shadow:0 6px 14px rgba(34,197,94,0.2)}
+.filter-btn:hover{border-color:#334155;color:#e6eef8}
 .filter-select{background:#071026;border:1px solid #1e293b;color:#e6eef8;padding:6px 10px;border-radius:6px;font-size:13px}
 .month-filter{flex-direction:column;align-items:flex-start}
 .pnl-badge{font-size:11px;padding:2px 6px;border-radius:999px;background:#0b1220;border:1px solid #1e293b;min-width:52px;text-align:center}
@@ -56,29 +64,20 @@ td{padding:8px}
 .strategy-roi-chart h3{margin-top:0;color:#e6eef8}
 .chart-container{position:relative;height:350px;margin-top:12px}
 .no-data{color:var(--muted);padding:20px;text-align:center}
-.strategy-by-month-calendar{width:100%}
-.month-selector{background:linear-gradient(135deg, #0b1220 0%, #111827 100%);padding:20px;border-radius:12px;margin-bottom:24px;border:1px solid #1e293b}
-.month-selector h2{margin:0 0 16px;font-size:20px;color:#e6eef8}
 .month-buttons{display:flex;flex-wrap:wrap;gap:8px}
 .month-btn{background:#0b1220;border:1px solid #1e293b;color:#9ca3af;padding:10px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.2s ease;white-space:nowrap}
 .month-btn:hover{border-color:var(--accent);color:var(--accent);background:#111827}
 .month-btn.active{background:var(--accent);color:#000;font-weight:600;border-color:var(--accent);box-shadow:0 4px 12px rgba(34,197,94,0.2)}
-.month-header{margin-bottom:20px}
-.month-header h2{margin:0;font-size:24px;color:#e6eef8}
-.month-stats-summary{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-bottom:24px}
-.summary-card{background:linear-gradient(135deg, #0b1220 0%, #111827 100%);padding:16px;border-radius:10px;border:1px solid #1e293b;display:flex;align-items:center;gap:12px;transition:all 0.2s}
-.summary-card:hover{border-color:#1e293b;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-.summary-card.total-trades .summary-icon{font-size:32px}
-.summary-card.total-pnl .summary-icon{font-size:32px}
-.summary-card.win-rate .summary-icon{font-size:32px}
-.summary-icon{font-size:32px}
-.summary-content{flex:1}
-.summary-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
-.summary-value{font-size:22px;font-weight:700;color:#e6eef8;margin-top:4px}
-.summary-card.total-pnl.positive{border-color:rgba(34,197,94,0.3)}
-.summary-card.total-pnl.negative{border-color:rgba(255,107,107,0.3)}
-.summary-card.total-pnl.positive .summary-value{color:var(--accent)}
-.summary-card.total-pnl.negative .summary-value{color:#ff6b6b}
+.month-grid{display:grid;grid-template-columns:repeat(4, minmax(140px, 1fr));gap:8px;width:100%}
+.month-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:76px;background:#0b1220;border:1px solid #1e293b;color:#cbd5f5;padding:8px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;text-transform:uppercase;transition:all 0.2s ease}
+.month-cell-label{font-size:15px;letter-spacing:0.2px;font-weight:800;color:#dbe2f5;opacity:0.95;text-align:center}
+.month-cell-value{font-size:15px;font-weight:800;letter-spacing:0.2px;line-height:1.1;text-align:center}
+.month-cell.positive{background:rgba(16,185,129,0.18);border-color:rgba(16,185,129,0.45);color:#eafff7}
+.month-cell.negative{background:rgba(244,63,94,0.2);border-color:rgba(244,63,94,0.45);color:#fff0f3}
+.month-cell:hover{transform:translateY(-1px);border-color:#334155}
+.month-cell.active{box-shadow:0 8px 18px rgba(34,197,94,0.18);border-color:#22c55e}
+.month-cell.active.negative{box-shadow:0 8px 18px rgba(248,113,113,0.18);border-color:#f87171}
+.month-cell.disabled{opacity:0.35;cursor:not-allowed;transform:none}
 .strategy-breakdown{background:transparent}
 .no-data{color:var(--muted);padding:40px 20px;text-align:center;font-size:16px;background:linear-gradient(135deg, #0b1220 0%, #111827 100%);border:1px dashed #1e293b;border-radius:10px}
 .strategy-cards{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:16px}
@@ -123,7 +122,7 @@ td.notes{font-size:12px;color:var(--muted)}
   .chart-container{height:280px}
   .strategy-stats-section .chart-container{height:320px}
   .strategy-cards{grid-template-columns:1fr}
-  .month-stats-summary{grid-template-columns:repeat(auto-fit, minmax(160px, 1fr))}
+  .month-grid{grid-template-columns:repeat(3, minmax(120px, 1fr))}
   table{display:block;overflow-x:auto;white-space:nowrap}
 }
 
@@ -142,4 +141,7 @@ td.notes{font-size:12px;color:var(--muted)}
   .strategy-card-stats{width:100%}
   .stat-group{flex-direction:column;width:100%}
   .stat-item{width:100%}
+  .month-grid{grid-template-columns:repeat(2, minmax(140px, 1fr))}
+  .month-cell{min-height:72px;padding:8px}
+  .month-cell-value{font-size:14px}
 }
